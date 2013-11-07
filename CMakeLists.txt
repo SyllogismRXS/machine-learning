@@ -56,16 +56,19 @@ install(DIRECTORY ${ML_LIB_DIR}/
 include_directories(${ML_INC_DIR})
 
 ## copy to ml/include
-file(GLOB_RECURSE INCLUDE_FILES RELATIVE ${ML_SRC_DIR} src/*.h src/*.proto)
+file(GLOB_RECURSE INCLUDE_FILES RELATIVE ${ML_SRC_DIR} src/*.h src/*.hpp)
 foreach(I ${INCLUDE_FILES})
   configure_file(${ML_SRC_DIR}/${I} ${ML_INC_DIR}/ml/${I} @ONLY)
 endforeach()
 
-## copy to ml/include
-file(GLOB_RECURSE GEN_INCLUDE_FILES RELATIVE ${ML_BUILD_DIR}/src *.pb.h)
-foreach(I ${GEN_INCLUDE_FILES})
-  configure_file(${ML_BUILD_DIR}/src/${I} ${ML_INC_DIR}/ml/${I} @ONLY)
-endforeach()
+find_package(Eigen3 REQUIRED)
+include_directories(${EIGEN3_INCLUDE_DIR})
 
+#message("====>")
+#message("${eigen3_INCLUDE_DIRS}")
+
+#include_directories(${eigen_INCLUDE_DIR})
+#include_directories(${EIGEN3_INCLUDE_DIR})
 
 add_subdirectory(src)
+add_subdirectory(share)
