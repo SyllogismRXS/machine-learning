@@ -28,4 +28,28 @@ namespace mL
 #endif
           return;
      }
+
+     std::vector<double> Plot::interval_stl(double t0, double step, double tend)
+     {
+          std::vector<double> v;
+          for(int i = t0; i < step; i++) {
+               v.push_back(i);
+          }
+          return v;
+     }
+
+     Eigen::MatrixXd Plot::interval(double t0, double step, double tend)
+     {
+          int num_elements = (tend-t0)/step+1;
+          Eigen::MatrixXd m(num_elements,1);
+
+          double value = t0;
+          for (int i = 0; i < num_elements; i++) {
+               m(i,0) = value;
+               value += step;               
+          }
+          return m;
+     }
+
+     
 }

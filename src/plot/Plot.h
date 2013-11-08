@@ -4,7 +4,7 @@
 /// @file Plot.h
 /// @author Kevin DeMarco <kevin.demarco@gmail.com>
 ///
-/// Time-stamp: <2013-11-07 17:17:24 syllogismrxs>
+/// Time-stamp: <2013-11-08 00:10:09 syllogismrxs>
 ///
 /// @version 1.0
 /// Created: 07 Nov 2013
@@ -39,6 +39,9 @@
 /// 
 /// ----------------------------------------------------------------------------
 
+#include <vector>
+#include <Eigen/Dense>
+
 namespace mL{
 
 class Plot {
@@ -48,6 +51,12 @@ protected:
 public:
      Plot();
      static void wait_for_key();
+
+     static std::vector<double> interval_stl(double t0, double step, double tend);
+     static Eigen::MatrixXd interval(double t0, double step, double tend);
+     
+
+
 };
 
 }
